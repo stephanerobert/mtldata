@@ -1,0 +1,24 @@
+services:
+  mtldata:
+    container_name: mtldata
+    environment:
+      ENVIRONMENT: prod
+    hostname: mtldata
+    build: .
+    image: mtldata
+    ports:
+      - mode: host
+        protocol: tcp
+        published: 80
+        target: 8000
+    restart: unless-stopped
+    networks:
+      mtldata-network: null
+  mtldata-redis:
+    container_name: mtldata-redis
+    image: redis
+    networks:
+      mtldata-network: null
+networks:
+  mtldata-network: {}
+version: '3.6'

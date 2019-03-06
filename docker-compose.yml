@@ -1,0 +1,43 @@
+services:
+  mtldata:
+    container_name: mtldata
+    environment:
+      ENVIRONMENT: local
+    depends_on:
+      - mtldata-redis
+    hostname: mtldata
+    build: .
+    image: mtldata
+    ports:
+    - mode: host
+      protocol: tcp
+      published: 8084
+      target: 8000
+    restart: unless-stopped
+    networks:
+      mtldata-network: null
+  mtldata-redis:
+    container_name: mtldata-redis
+    image: redis
+    networks:
+      mtldata-network:
+        aliases:
+          - mtl-data.redis
+  mtldata-mock-server:
+    command: /opt/mockserver/run_mockserver.sh -serverPort 80
+    healthcheck:
+      test: "true"
+    image: jamesdbloom/mockserver:latest
+    networks:
+      mtldata-network:
+        aliases:
+          - mtl-data.mockserver
+    ports:
+      - mode: host
+        protocol: tcp
+        published: 38785
+        target: 80
+    user: root
+networks:
+  mtldata-network: {}
+version: '3.6'

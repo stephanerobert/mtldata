@@ -1,0 +1,10 @@
+target/
+.idea
+.tox
+*.iml
+*.pyc
+*.coverage
+*.egg-info
+.eggs
+AUTHORS
+ChangeLog

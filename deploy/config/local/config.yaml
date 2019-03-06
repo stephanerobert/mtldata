@@ -1,0 +1,6 @@
+key: AIzaSyBuJkV5xoikLOe-ufK9XMPOhP03PDWGowE
+mtl:
+  tree_url: 'http://donnees.ville.montreal.qc.ca'
+  tree_path: '/dataset/3e3efad6-9f2f-4cc0-8f1b-92de1ccdb282/resource/c6c5afe8-10be-4539-8eae-93918ea9866e/download/arbres-publics.csv'
+redis:
+  url: 'http://mtl-data.redis'

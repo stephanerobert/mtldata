@@ -1,0 +1,14 @@
+version: '3.6'
+services:
+  mtldata:
+    container_name: mtldata
+    restart: unless-stopped
+
+    hostname: mtldata
+
+    ports:
+      - target: 8000
+        published: 8084
+        protocol: tcp
+        mode: host
+
