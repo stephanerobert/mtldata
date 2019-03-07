@@ -53,13 +53,13 @@ Providing a list of trees (all 'essences' included) in this 'arrondissement'
 WARNING: It can take some time to get a response from that query
 
 ---
+Providing a list of trees for the provided 'essence' in this 'arrondissement'
 ```sh
 0.0.0.0:8084/v1/arbres/\<arrondissement\>/\<essence\>
 ```
-Providing a list of trees for the provided 'essence' in this 'arrondissement'
 
 ---
+Providing a Google map locating all of the trees for the provided 'essence' in this 'arrondissement'
 ```sh
 0.0.0.0:8084/v1/arbres/\<arrondissement\>/\<essence\>/map
 ```
-Providing a Google map locating all of the trees for the provided 'essence' in this 'arrondissement'
