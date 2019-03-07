@@ -30,7 +30,7 @@ class TestSQLite(unittest.TestCase):
         data3 = flexmock()
         data3.should_receive('fetchall').once().and_return((['rosemont', 'erable', '5', '6', '{"a":1}'],))
         data4 = flexmock()
-        data4.should_receive('fetchall').once().and_return((['rosemont-marie', 'bouleau', '7', '8', '{"a":1}'],))
+        data4.should_receive('fetchall').once().and_return((['rosemont', 'bouleau', '7', '8', '{"a":1}'],))
 
         self.sqlite.cursor.should_receive('execute') \
             .with_args(
