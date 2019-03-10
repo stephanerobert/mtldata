@@ -1,7 +1,7 @@
+import asyncio
 import unittest
 
 from flexmock import flexmock
-import asyncio
 from quart import Quart
 
 from mtldata.api import endpoints
@@ -19,12 +19,14 @@ class TestEndpoints(unittest.TestCase):
         self.app.register_blueprint(endpoints.app, url_prefix="/v1")
 
     def test_arbres_endpoint(self):
-        self.datastore.should_receive("get_summary_tree").and_return({'Trees': "The Trees"})
+        self.datastore.should_receive("get_summary_tree").and_return(
+            {'arrond1': [{'essence1': {'tree': 'definition'}}, {'essence2': {'tree': 'definition'}}]})
 
         response = asyncio.get_event_loop().run_until_complete(self.app.test_client().get("/v1/arbres"))
         result = asyncio.get_event_loop().run_until_complete(response.json)
 
-        self.assertEqual(result, {'Trees': "The Trees"})
+        self.assertEqual(result,
+                         {'arrond1': [{'essence1': {'tree': 'definition'}}, {'essence2': {'tree': 'definition'}}]})
 
     def test_arbres_arrondissement_endpoint(self):
         self.datastore.should_receive("get_trees_arrondissement").and_return(
