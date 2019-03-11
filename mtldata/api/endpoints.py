@@ -2,7 +2,7 @@ from functools import wraps
 from tempfile import NamedTemporaryFile
 
 from gmplot import gmplot
-from quart import Blueprint, jsonify, send_file
+from quart import Blueprint, jsonify, send_file, request
 
 app = Blueprint('endpoints', __name__)
 
@@ -60,9 +60,10 @@ async def essence(arrondissement, essence):
 
 @app.route('/arbres/<arrondissement>/<essence>/map', methods=['GET'])
 def maps(arrondissement, essence):
+    api_key = request.args.get('key', '')
     trees = app.datastore.get_trees_arrondissement_essence(arrondissement, essence)
 
-    gmap = gmplot.GoogleMapPlotter(45.5367554, -73.801757, 11.02, apikey='AIzaSyBuJkV5xoikLOe-ufK9XMPOhP03PDWGowE')
+    gmap = gmplot.GoogleMapPlotter(45.5367554, -73.801757, 11.02, apikey=api_key)
     gmap.write_point = _write_point
     for tree in trees:
         gmap.marker(float(tree['latitude']), float(tree['longitude']), 'green')
