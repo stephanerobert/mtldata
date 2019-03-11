@@ -1,8 +1,10 @@
 import json
 import sqlite3
 
+from mtldata.model.storage import Storage
 
-class SQLite:
+
+class SQLite(Storage):
     def __init__(self):
         self.connection = sqlite3.connect(':memory:')
         self.cursor = self.connection.cursor()

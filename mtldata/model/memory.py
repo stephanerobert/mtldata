@@ -1,4 +1,7 @@
-class Memory:
+from mtldata.model.storage import Storage
+
+
+class Memory(Storage):
     def __init__(self):
         self.arbres = {}
         self.count = 0
@@ -15,19 +18,6 @@ class Memory:
 
         for arrondissement, arbre in self.arbres.items():
             trees[arrondissement] = list(set([essence for essence, info in arbre.items()]))
-        return trees
-
-    def get_trees(self):
-        trees = {}
-        if self.arrondissements is None:
-            self._fetch_arrondissements()
-
-        for arrondissement in self.arrondissements:
-            arrond = self.get_trees_arrondissement(arrondissement)
-
-            if arrond:
-                trees[arrondissement] = arrond
-
         return trees
 
     def get_trees_arrondissement(self, arrondissement):
