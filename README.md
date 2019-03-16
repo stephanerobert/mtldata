@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/stephanerobert/mtldata.svg?branch=master)](https://travis-ci.org/stephanerobert/mtldata)
+
 mtldata
 ========
 
