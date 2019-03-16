@@ -1,7 +1,7 @@
 mtldata
 ========
 
-Extract and make sence of Montreal open data.
+Extract and make sense of Montreal open data.
 This small project is really just used for educational purpose
 
 Object of this project
