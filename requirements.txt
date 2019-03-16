@@ -6,7 +6,7 @@
 #
 aiofiles==0.4.0           # via quart
 blinker==1.4              # via quart
-certifi==2018.11.29       # via requests
+certifi==2019.3.9         # via requests
 chardet==3.0.4            # via requests
 click==7.0                # via quart
 config-probe==0.1.5
@@ -23,9 +23,9 @@ markupsafe==1.1.1         # via jinja2
 multidict==4.5.2          # via quart
 munch==2.3.2              # via config-probe
 pytoml==0.1.20            # via hypercorn
-pyyaml==3.13              # via config-probe
+pyyaml==5.1               # via config-probe
 quart==0.8.1
-redis==3.2.0
+redis==3.2.1
 requests==2.21.0          # via gmplot
 six==1.12.0               # via munch
 sortedcontainers==2.1.0   # via quart
