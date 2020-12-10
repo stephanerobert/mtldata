@@ -2,7 +2,7 @@ import asyncio
 import csv
 from urllib import request
 
-from mtldata.model.objects import Tree
+from mtldata.core.objects.objects import Tree
 
 
 class MtlTrees:

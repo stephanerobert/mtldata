@@ -1,4 +1,4 @@
-from mtldata.model.storage import Storage
+from mtldata.core.storage import Storage
 
 
 class Memory(Storage):
