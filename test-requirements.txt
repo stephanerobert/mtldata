@@ -4,31 +4,30 @@
 #
 #    pip-compile --no-index --no-emit-trusted-host --output-file test-requirements.txt test-requirements.in
 #
-aiofiles==0.4.0           # via quart
+aiofiles==0.6.0           # via quart
 blinker==1.4              # via quart
-certifi==2019.3.9         # via requests
+certifi==2020.12.5        # via requests
 chardet==3.0.4            # via requests
-click==7.0                # via quart
-flexmock==0.10.3
-h11==0.8.1                # via hypercorn, wsproto
-h2==3.1.0                 # via hypercorn
-hpack==3.0.0              # via h2
-hypercorn==0.5.3          # via quart
-hyperframe==5.2.0         # via h2
-idna==2.8                 # via requests
+click==7.1.2              # via quart
+flexmock==0.10.4
+h11==0.11.0               # via hypercorn, wsproto
+h2==4.0.0                 # via hypercorn
+hpack==4.0.0              # via h2
+hypercorn==0.11.1         # via quart
+hyperframe==6.0.0         # via h2
+idna==2.10                # via requests
 itsdangerous==1.1.0       # via quart
 jabstract==0.1.3
-jinja2==2.10              # via quart
+jinja2==2.11.2            # via quart
 markupsafe==1.1.1         # via jinja2
-mockserver-friendly-client==0.3.0
-multidict==4.5.2          # via quart
+mockserver-friendly-client==0.4.1
 nose==1.3.7
-pyhamcrest==1.9.0
-pytoml==0.1.20            # via hypercorn
-quart==0.8.1
-requests==2.21.0
-six==1.12.0               # via pyhamcrest
-sortedcontainers==2.1.0   # via quart
-typing-extensions==3.7.2  # via hypercorn
-urllib3==1.24.2           # via requests
-wsproto==0.13.0           # via hypercorn
+priority==1.3.0           # via hypercorn
+pyhamcrest==2.0.2
+quart==0.14.0
+requests==2.25.0
+toml==0.10.2              # via hypercorn, quart
+typing-extensions==3.7.4.3  # via hypercorn, quart
+urllib3==1.26.2           # via requests
+werkzeug==1.0.1           # via quart
+wsproto==1.0.0            # via hypercorn

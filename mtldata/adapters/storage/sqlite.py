@@ -1,7 +1,7 @@
 import json
 import sqlite3
 
-from mtldata.model.storage import Storage
+from mtldata.core.storage import Storage
 
 
 class SQLite(Storage):

@@ -3,8 +3,8 @@ import unittest
 from flexmock import flexmock
 from hamcrest import assert_that, is_
 
-from mtldata.model.objects import Tree
-from mtldata.model.sqlite import SQLite
+from mtldata.adapters.storage.sqlite import SQLite
+from mtldata.core.objects.objects import Tree
 
 
 class TestSQLite(unittest.TestCase):
