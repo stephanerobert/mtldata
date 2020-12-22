@@ -7,7 +7,7 @@
 aiofiles==0.6.0           # via quart
 blinker==1.4              # via quart
 certifi==2020.12.5        # via requests
-chardet==3.0.4            # via requests
+chardet==4.0.0            # via requests
 click==7.1.2              # via quart
 config-probe==0.2.0
 gmplot==1.4.1
@@ -23,9 +23,9 @@ markupsafe==1.1.1         # via jinja2
 munch==2.5.0              # via config-probe
 priority==1.3.0           # via hypercorn
 pyyaml==5.3.1             # via config-probe
-quart==0.14.0
+quart==0.14.1
 redis==3.5.3
-requests==2.25.0          # via gmplot
+requests==2.25.1          # via gmplot
 six==1.15.0               # via munch
 toml==0.10.2              # via hypercorn, quart
 typing-extensions==3.7.4.3  # via hypercorn, quart

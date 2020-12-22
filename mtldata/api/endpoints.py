@@ -33,11 +33,6 @@ def record_auth(setup_state):
     app.cache = setup_state.app.config["cache"]
 
 
-@app.route('/arrondissements', methods=['GET'])
-async def arrondissements():
-    return jsonify(app.datastore.get_arrondissements())
-
-
 @app.route('/essences', methods=['GET'])
 async def essences():
     return jsonify(app.datastore.get_essences())
@@ -48,17 +43,22 @@ async def arbres():
     return jsonify(app.datastore.get_summary_tree())
 
 
-@app.route('/arbres/<arrondissement>', methods=['GET'])
+@app.route('/arrondissements', methods=['GET'])
+async def arrondissements():
+    return jsonify(app.datastore.get_arrondissements())
+
+
+@app.route('/arrondissements/<arrondissement>/arbres', methods=['GET'])
 async def arrondissement(arrondissement):
     return jsonify(app.datastore.get_trees_arrondissement(arrondissement))
 
 
-@app.route('/arbres/<arrondissement>/<essence>', methods=['GET'])
+@app.route('/arrondissements/<arrondissement>/arbres/<essence>', methods=['GET'])
 async def essence(arrondissement, essence):
     return jsonify(app.datastore.get_trees_arrondissement_essence(arrondissement, essence))
 
 
-@app.route('/arbres/<arrondissement>/<essence>/map', methods=['GET'])
+@app.route('/arrondissements/<arrondissement>/arbres/<essence>/map', methods=['GET'])
 def maps(arrondissement, essence):
     api_key = request.args.get('key', '')
     trees = app.datastore.get_trees_arrondissement_essence(arrondissement, essence)
