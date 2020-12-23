@@ -32,7 +32,7 @@ class TestEndpoints(unittest.TestCase):
         self.datastore.should_receive("get_trees_arrondissement").and_return(
             {'Trees': "The Trees in the arrondissement"})
 
-        response = asyncio.get_event_loop().run_until_complete(self.app.test_client().get("/v1/arbres/ville-marie"))
+        response = asyncio.get_event_loop().run_until_complete(self.app.test_client().get("/v1/arrondissements/ville-marie/arbres"))
         result = asyncio.get_event_loop().run_until_complete(response.json)
 
         self.assertEqual(result, {'Trees': "The Trees in the arrondissement"})
@@ -42,7 +42,7 @@ class TestEndpoints(unittest.TestCase):
             {'Trees': "The Trees in the arrondissement by essence"})
 
         response = asyncio.get_event_loop().run_until_complete(
-            self.app.test_client().get("/v1/arbres/ville-marie/erable"))
+            self.app.test_client().get("/v1/arrondissements/ville-marie/arbres/erable"))
         result = asyncio.get_event_loop().run_until_complete(response.json)
 
         self.assertEqual(result, {'Trees': "The Trees in the arrondissement by essence"})
