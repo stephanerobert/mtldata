@@ -61,6 +61,12 @@ Providing a list of trees (all 'essences' included) in this 'arrondissement'
 WARNING: It can take some time to get a response from that query
 
 ---
+Providing a list of 'essence' in this 'arrondissement'
+```sh
+0.0.0.0:8084/v1/arrondissements/<arrondissement>/arbres/essences
+```
+
+---
 Providing a list of trees for the provided 'essence' in this 'arrondissement'
 ```sh
 0.0.0.0:8084/v1/arrondissements/<arrondissement>/arbres/essences/<essence>
