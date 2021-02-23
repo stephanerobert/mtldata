@@ -6,14 +6,15 @@ from quart import Quart
 from mtldata.adapters.mtl_trees import MtlTrees
 from mtldata.api import healthcheck, endpoints
 from mtldata.config import load
-from mtldata.model.sqlite import SQLite
-from mtldata.model.tree_data import TreeData
+from mtldata.adapters.storage.sqlite import SQLite
+from mtldata.adapters.storage.memory import Memory
+from mtldata.core.tree_data import TreeData
 
 config = load(os.environ.get('ENVIRONMENT', 'local'))
 
 mtl_data_adaptor = MtlTrees(config.mtl.tree_url+config.mtl.tree_path)
-datastore = SQLite()
-# datastore = Memory()
+# datastore = SQLite()
+datastore = Memory()
 
 app = Quart(__name__)
 

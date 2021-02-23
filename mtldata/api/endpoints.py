@@ -10,6 +10,29 @@ app.key = None
 app.datastore = None
 app.cache = None
 
+def sorted_paging(sort_by_default):
+    def sorted_paging_decorator(func):
+        @wraps(func)
+        async def wrapper(*args, **kwargs):
+            limit = int(request.args.get('limit', 100))
+            offset = int(request.args.get('offset', 0))
+            sort_direction = request.args.get('direction', 'ASC')
+
+            payload = {'list': await func(*args, **kwargs)}
+
+            payload['total'] = len(payload['list'])
+            payload['list'] = payload['list'][offset:offset + limit]
+            payload['limit'] = limit
+            payload['offset'] = offset
+            payload['sortBy'] = sort_by
+            payload['direction'] = sort_direction
+
+            return jsonify(payload)
+
+        return wrapper
+
+    return sorted_paging_decorator
+
 
 def cache(func):
     @wraps(func)
@@ -53,13 +76,18 @@ async def arrondissement(arrondissement):
     return jsonify(app.datastore.get_trees_arrondissement(arrondissement))
 
 
-@app.route('/arrondissements/<arrondissement>/arbres/<essence>', methods=['GET'])
+@app.route('/arrondissements/<arrondissement>/arbres/essences', methods=['GET'])
+async def essences_in_arrondissement(arrondissement):
+    return jsonify(app.datastore.get_trees_essences_in_arrondissement(arrondissement))
+
+
+@app.route('/arrondissements/<arrondissement>/arbres/essences/<essence>', methods=['GET'])
 async def essence(arrondissement, essence):
     return jsonify(app.datastore.get_trees_arrondissement_essence(arrondissement, essence))
 
 
-@app.route('/arrondissements/<arrondissement>/arbres/<essence>/map', methods=['GET'])
-def maps(arrondissement, essence):
+@app.route('/arrondissements/<arrondissement>/arbres/essences/<essence>/map', methods=['GET'])
+async def maps(arrondissement, essence):
     api_key = request.args.get('key', '')
     trees = app.datastore.get_trees_arrondissement_essence(arrondissement, essence)
 
@@ -71,7 +99,7 @@ def maps(arrondissement, essence):
     filename = NamedTemporaryFile(suffix='.html', delete=False).name
     gmap.draw(filename)
 
-    return send_file(filename)
+    return await send_file(filename)
 
 
 # Monkey patching because, for some reason, the author decided to use local images...

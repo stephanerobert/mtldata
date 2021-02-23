@@ -23,12 +23,15 @@ class Memory(Storage):
     def get_trees_arrondissement(self, arrondissement):
         return self.arbres.get(arrondissement, [])
 
+    def get_trees_essences_in_arrondissement(self, arrondissement):
+        return list(self.arbres[arrondissement].keys())
+
     def get_trees_arrondissement_essence(self, arrondissement, essence):
         essences = self.arbres[arrondissement].items()
         return [v for e, v in essences if e == essence][0]
 
     def get_arrondissements(self):
-        return self.arbres.keys()
+        return list(self.arbres.keys())
 
     def get_essences(self):
         groupe = []

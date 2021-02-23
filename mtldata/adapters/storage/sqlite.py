@@ -7,18 +7,17 @@ from mtldata.core.storage import Storage
 class SQLite(Storage):
     def __init__(self):
         self.connection = sqlite3.connect(':memory:')
-        self.cursor = self.connection.cursor()
         self.arrondissements = None
         self.essences = None
 
         self._create_tables()
 
     def _create_tables(self):
-        self.cursor.execute(
+        self.connection.cursor().execute(
             '''CREATE TABLE trees (essence varchar(255), arrondissement varchar(255), longitude, latitude, other_info varchar(255))''')
 
     def store_info(self, tree):
-        self.cursor.execute(
+        self.connection.cursor().execute(
             "INSERT INTO trees ('essence', 'arrondissement', 'longitude', 'latitude', 'other_info') VALUES (?,?,?,?,?)",
             [tree.essence, tree.arrondissement, tree.longitude, tree.latitude, json.dumps(tree.other_info)])
         self.connection.commit()
@@ -30,7 +29,7 @@ class SQLite(Storage):
 
         for arrondissement in self.arrondissements:
             print(arrondissement)
-            data = self.cursor.execute("SELECT DISTINCT essence FROM trees where arrondissement=?",
+            data = self.connection.cursor().execute("SELECT DISTINCT essence FROM trees where arrondissement=?",
                                        [arrondissement]).fetchall()
             trees[arrondissement] = [tree[0] for tree in data]
 
@@ -63,7 +62,7 @@ class SQLite(Storage):
 
     def get_trees_arrondissement_essence(self, arrondissement, essence):
         trees = []
-        data = self.cursor.execute(
+        data = self.connection.cursor().execute(
             "SELECT essence, arrondissement, longitude, latitude, other_info FROM trees WHERE arrondissement = ? and essence = ?",
             [arrondissement, essence]).fetchall()
 
@@ -85,15 +84,15 @@ class SQLite(Storage):
 
     def _fetch_arrondissements(self):
         self.arrondissements = []
-        arrondissements = self.cursor.execute("SELECT DISTINCT arrondissement FROM trees")
+        arrondissements = self.connection.cursor().execute("SELECT DISTINCT arrondissement FROM trees")
         for arrondissement in arrondissements.fetchall():
             self.arrondissements.append(arrondissement[0])
 
     def _fetch_essences(self):
         self.essences = []
-        essences = self.cursor.execute("SELECT DISTINCT essence FROM trees")
+        essences = self.connection.cursor().execute("SELECT DISTINCT essence FROM trees")
         for essence in essences.fetchall():
             self.essences.append(essence[0])
 
     def _count_trees(self):
-        return self.cursor.execute("SELECT COUNT(essence) FROM trees").fetchone()
+        return self.connection.cursor().execute("SELECT COUNT(essence) FROM trees").fetchone()

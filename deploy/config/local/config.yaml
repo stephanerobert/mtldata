@@ -1,5 +1,5 @@
 mtl:
-  tree_url: 'http://donnees.ville.montreal.qc.ca'
-  tree_path: '/dataset/3e3efad6-9f2f-4cc0-8f1b-92de1ccdb282/resource/c6c5afe8-10be-4539-8eae-93918ea9866e/download/arbres-publics.csv'
+  tree_url: 'https://data.montreal.ca'
+  tree_path: '/dataset/b89fd27d-4b49-461b-8e54-fa2b34a628c4/resource/64e28fe6-ef37-437a-972d-d1d3f1f7d891/download/arbres-publics.csv'
 redis:
   url: 'http://mtl-data.redis'

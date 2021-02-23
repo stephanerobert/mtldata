@@ -10,15 +10,15 @@ certifi==2020.12.5        # via requests
 chardet==4.0.0            # via requests
 click==7.1.2              # via quart
 flexmock==0.10.4
-h11==0.11.0               # via hypercorn, wsproto
+h11==0.12.0               # via hypercorn, wsproto
 h2==4.0.0                 # via hypercorn
 hpack==4.0.0              # via h2
-hypercorn==0.11.1         # via quart
+hypercorn==0.11.2         # via quart
 hyperframe==6.0.0         # via h2
 idna==2.10                # via requests
 itsdangerous==1.1.0       # via quart
 jabstract==0.1.3
-jinja2==2.11.2            # via quart
+jinja2==2.11.3            # via quart
 markupsafe==1.1.1         # via jinja2
 mockserver-friendly-client==0.4.1
 nose==1.3.7
@@ -28,6 +28,6 @@ quart==0.14.1
 requests==2.25.1
 toml==0.10.2              # via hypercorn, quart
 typing-extensions==3.7.4.3  # via hypercorn, quart
-urllib3==1.26.2           # via requests
+urllib3==1.26.3           # via requests
 werkzeug==1.0.1           # via quart
 wsproto==1.0.0            # via hypercorn

@@ -25,3 +25,7 @@ class Storage(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def get_essences(self):
         pass
+
+    @abc.abstractmethod
+    def get_trees_essences_in_arrondissement(self):
+        pass
