@@ -72,6 +72,9 @@ class SQLite(Storage):
 
         return trees
 
+    def get_trees_essences_in_arrondissement(self, arrondissement):
+        pass
+
     def get_arrondissements(self):
         if self.arrondissements is None:
             self._fetch_arrondissements()

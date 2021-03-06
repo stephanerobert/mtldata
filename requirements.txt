@@ -23,6 +23,7 @@ markupsafe==1.1.1         # via jinja2
 munch==2.5.0              # via config-probe
 priority==1.3.0           # via hypercorn
 pyyaml==5.4.1             # via config-probe
+quart-cors==0.3.0
 quart==0.14.1
 redis==3.5.3
 requests==2.25.1          # via gmplot

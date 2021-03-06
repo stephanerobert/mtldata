@@ -10,29 +10,6 @@ app.key = None
 app.datastore = None
 app.cache = None
 
-def sorted_paging(sort_by_default):
-    def sorted_paging_decorator(func):
-        @wraps(func)
-        async def wrapper(*args, **kwargs):
-            limit = int(request.args.get('limit', 100))
-            offset = int(request.args.get('offset', 0))
-            sort_direction = request.args.get('direction', 'ASC')
-
-            payload = {'list': await func(*args, **kwargs)}
-
-            payload['total'] = len(payload['list'])
-            payload['list'] = payload['list'][offset:offset + limit]
-            payload['limit'] = limit
-            payload['offset'] = offset
-            payload['sortBy'] = sort_by
-            payload['direction'] = sort_direction
-
-            return jsonify(payload)
-
-        return wrapper
-
-    return sorted_paging_decorator
-
 
 def cache(func):
     @wraps(func)
@@ -56,40 +33,40 @@ def record_auth(setup_state):
     app.cache = setup_state.app.config["cache"]
 
 
-@app.route('/essences', methods=['GET'])
-async def essences():
+@app.route('/species', methods=['GET'])
+async def species():
     return jsonify(app.datastore.get_essences())
 
 
-@app.route('/arbres', methods=['GET'])
-async def arbres():
+@app.route('/trees', methods=['GET'])
+async def trees():
     return jsonify(app.datastore.get_summary_tree())
 
 
-@app.route('/arrondissements', methods=['GET'])
-async def arrondissements():
+@app.route('/cities', methods=['GET'])
+async def cities():
     return jsonify(app.datastore.get_arrondissements())
 
 
-@app.route('/arrondissements/<arrondissement>/arbres', methods=['GET'])
-async def arrondissement(arrondissement):
-    return jsonify(app.datastore.get_trees_arrondissement(arrondissement))
+@app.route('/cities/<city>/trees', methods=['GET'])
+async def city(city):
+    return jsonify(app.datastore.get_trees_arrondissement(city))
 
 
-@app.route('/arrondissements/<arrondissement>/arbres/essences', methods=['GET'])
-async def essences_in_arrondissement(arrondissement):
-    return jsonify(app.datastore.get_trees_essences_in_arrondissement(arrondissement))
+@app.route('/cities/<city>/trees/species', methods=['GET'])
+async def essences_in_arrondissement(city):
+    return jsonify(app.datastore.get_trees_essences_in_arrondissement(city))
 
 
-@app.route('/arrondissements/<arrondissement>/arbres/essences/<essence>', methods=['GET'])
-async def essence(arrondissement, essence):
-    return jsonify(app.datastore.get_trees_arrondissement_essence(arrondissement, essence))
+@app.route('/cities/<city>/trees/species/<species>', methods=['GET'])
+async def species_in_city(city, species):
+    return jsonify(app.datastore.get_trees_arrondissement_essence(city, species))
 
 
-@app.route('/arrondissements/<arrondissement>/arbres/essences/<essence>/map', methods=['GET'])
-async def maps(arrondissement, essence):
+@app.route('/cities/<city>/trees/species/<species>/map', methods=['GET'])
+async def maps(city, species):
     api_key = request.args.get('key', '')
-    trees = app.datastore.get_trees_arrondissement_essence(arrondissement, essence)
+    trees = app.datastore.get_trees_arrondissement_essence(city, species)
 
     gmap = gmplot.GoogleMapPlotter(45.5367554, -73.801757, 11.02, apikey=api_key)
     gmap.write_point = _write_point

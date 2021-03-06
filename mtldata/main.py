@@ -2,6 +2,7 @@ import os
 
 from redis import Redis
 from quart import Quart
+from quart_cors import cors
 
 from mtldata.adapters.mtl_trees import MtlTrees
 from mtldata.api import healthcheck, endpoints
@@ -17,6 +18,7 @@ mtl_data_adaptor = MtlTrees(config.mtl.tree_url+config.mtl.tree_path)
 datastore = Memory()
 
 app = Quart(__name__)
+app = cors(app, allow_origin="*")
 
 app.config["storage"] = datastore
 app.config["cache"] = Redis(config.redis.url)

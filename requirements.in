@@ -1,5 +1,6 @@
 config-probe
 quart
+quart-cors
 hypercorn
 gmplot == 1.2.0
 redis

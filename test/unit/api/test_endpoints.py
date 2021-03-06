@@ -22,7 +22,7 @@ class TestEndpoints(unittest.TestCase):
         self.datastore.should_receive("get_summary_tree").and_return(
             {'arrond1': [{'essence1': {'tree': 'definition'}}, {'essence2': {'tree': 'definition'}}]})
 
-        response = asyncio.get_event_loop().run_until_complete(self.app.test_client().get("/v1/arbres"))
+        response = asyncio.get_event_loop().run_until_complete(self.app.test_client().get("/v1/trees"))
         result = asyncio.get_event_loop().run_until_complete(response.json)
 
         self.assertEqual(result,
@@ -30,35 +30,35 @@ class TestEndpoints(unittest.TestCase):
 
     def test_arbres_arrondissement_endpoint(self):
         self.datastore.should_receive("get_trees_arrondissement").and_return(
-            {'Trees': "The Trees in the arrondissement"})
+            {'Trees': "The Trees in the city"})
 
-        response = asyncio.get_event_loop().run_until_complete(self.app.test_client().get("/v1/arrondissements/ville-marie/arbres"))
+        response = asyncio.get_event_loop().run_until_complete(self.app.test_client().get("/v1/cities/ville-marie/trees"))
         result = asyncio.get_event_loop().run_until_complete(response.json)
 
-        self.assertEqual(result, {'Trees': "The Trees in the arrondissement"})
+        self.assertEqual(result, {'Trees': "The Trees in the city"})
 
     def test_arbres_arrondissement_essence_endpoint(self):
         self.datastore.should_receive("get_trees_arrondissement_essence").and_return(
-            {'Trees': "The Trees in the arrondissement by essence"})
+            {'Trees': "The Trees in the city by species"})
 
         response = asyncio.get_event_loop().run_until_complete(
-            self.app.test_client().get("/v1/arrondissements/ville-marie/arbres/erable"))
+            self.app.test_client().get("/v1/cities/ville-marie/trees/erable"))
         result = asyncio.get_event_loop().run_until_complete(response.json)
 
-        self.assertEqual(result, {'Trees': "The Trees in the arrondissement by essence"})
+        self.assertEqual(result, {'Trees': "The Trees in the city by species"})
 
     def test_arrondissements_endpoint(self):
-        self.datastore.should_receive("get_arrondissements").and_return({'Trees': "The arrondissements"})
+        self.datastore.should_receive("get_arrondissements").and_return({'Trees': "The cities"})
 
-        response = asyncio.get_event_loop().run_until_complete(self.app.test_client().get("/v1/arrondissements"))
+        response = asyncio.get_event_loop().run_until_complete(self.app.test_client().get("/v1/cities"))
         result = asyncio.get_event_loop().run_until_complete(response.json)
 
-        self.assertEqual(result, {'Trees': "The arrondissements"})
+        self.assertEqual(result, {'Trees': "The cities"})
 
     def test_essence_endpoint(self):
-        self.datastore.should_receive("get_essences").and_return({'Trees': "The essences"})
+        self.datastore.should_receive("get_essences").and_return({'Trees': "The species"})
 
-        response = asyncio.get_event_loop().run_until_complete(self.app.test_client().get("/v1/essences"))
+        response = asyncio.get_event_loop().run_until_complete(self.app.test_client().get("/v1/species"))
         result = asyncio.get_event_loop().run_until_complete(response.json)
 
-        self.assertEqual(result, {'Trees': "The essences"})
+        self.assertEqual(result, {'Trees': "The species"})
