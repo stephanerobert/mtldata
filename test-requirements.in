@@ -1,7 +1,8 @@
-quart
+coverage
 flexmock
 jabstract
+mockserver-friendly-client>=0.2.1
 nose
 pyhamcrest
+quart
 requests
-mockserver-friendly-client>=0.2.1
