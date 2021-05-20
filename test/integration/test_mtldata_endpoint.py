@@ -11,7 +11,7 @@ class MtlDataTest(ServerMockingTestBase):
     def setUp(self):
         super().setUp()
 
-    def test_return_agile_devices_with_rbac_token(self):
+    def test_return_a_list_of_trees(self):
         self.mock_server.stub(
             request(
                 path="/dataset/3e3efad6-9f2f-4cc0-8f1b-92de1ccdb282/resource/c6c5afe8-10be-4539-8eae-93918ea9866e/download/arbres-publics.csv"),
