@@ -30,7 +30,7 @@ class SQLite(Storage):
         for arrondissement in self.arrondissements:
             print(arrondissement)
             data = self.connection.cursor().execute("SELECT DISTINCT essence FROM trees where arrondissement=?",
-                                       [arrondissement]).fetchall()
+                                                    [arrondissement]).fetchall()
             trees[arrondissement] = [tree[0] for tree in data]
 
         return trees
