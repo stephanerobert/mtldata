@@ -4,33 +4,63 @@
 #
 #    pip-compile --no-index --no-emit-trusted-host --output-file test-requirements.txt test-requirements.in
 #
-aiofiles==0.7.0           # via quart
-blinker==1.4              # via quart
-certifi==2021.5.30        # via requests
-chardet==4.0.0            # via requests
-click==8.0.1              # via quart
+aiofiles==0.7.0
+    # via quart
+blinker==1.4
+    # via quart
+certifi==2022.12.7
+    # via requests
+chardet==4.0.0
+    # via requests
+click==8.0.1
+    # via quart
 coverage==5.5
+    # via -r test-requirements.in
 flexmock==0.10.4
-h11==0.12.0               # via hypercorn, wsproto
-h2==4.0.0                 # via hypercorn
-hpack==4.0.0              # via h2
-hypercorn==0.11.2         # via quart
-hyperframe==6.0.1         # via h2
-idna==2.10                # via requests
-importlib-metadata==4.4.0  # via click
-itsdangerous==2.0.1       # via quart
+    # via -r test-requirements.in
+h11==0.12.0
+    # via
+    #   hypercorn
+    #   wsproto
+h2==4.0.0
+    # via hypercorn
+hpack==4.0.0
+    # via h2
+hypercorn==0.11.2
+    # via quart
+hyperframe==6.0.1
+    # via h2
+idna==2.10
+    # via requests
+itsdangerous==2.0.1
+    # via quart
 jabstract==0.1.3
-jinja2==3.0.1             # via quart
-markupsafe==2.0.1         # via jinja2
+    # via -r test-requirements.in
+jinja2==3.0.1
+    # via quart
+markupsafe==2.0.1
+    # via jinja2
 mockserver-friendly-client==0.4.1
+    # via -r test-requirements.in
 nose==1.3.7
-priority==1.3.0           # via hypercorn
+    # via -r test-requirements.in
+priority==1.3.0
+    # via hypercorn
 pyhamcrest==2.0.2
+    # via -r test-requirements.in
 quart==0.15.1
+    # via -r test-requirements.in
 requests==2.25.1
-toml==0.10.2              # via hypercorn, quart
-typing-extensions==3.10.0.0  # via hypercorn, importlib-metadata, quart
-urllib3==1.26.5           # via requests
-werkzeug==2.0.1           # via quart
-wsproto==1.0.0            # via hypercorn
-zipp==3.4.1               # via importlib-metadata
+    # via
+    #   -r test-requirements.in
+    #   mockserver-friendly-client
+toml==0.10.2
+    # via
+    #   hypercorn
+    #   quart
+urllib3==1.26.5
+    # via requests
+werkzeug==2.0.1
+    # via quart
+wsproto==1.0.0
+    # via hypercorn
